@@ -17,6 +17,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         * {
             font-family: "Geist", sans-serif;
@@ -55,22 +60,62 @@
 
         <!-- ............................................. -->
 
-        <section class=" bg-gray-100 p-4 shadow-sm flex gap-4 mt-5 rounded-sm">
-            <div class="counter flex justify-between">
-                <div class="left-side flex gap-2 items-center ">
-                    <div class="img bg-purple-200 rounded-full p-2">
-                        <img src="./assets/Aperture.png" alt="">
-                    </div>
-                    <div class="counter-text ">
-                        <h2 class="text-[20px] font-bold"><span id="total-issues">0</span> <span>Issues</span></h2>
-                        <p>Track and manage your project issues</p>
-                    </div>
+        <section class=" bg-gray-100 p-4 shadow-sm flex justify-between items-center mt-5 rounded-sm">
+            <!-- <div class="counter flex justify-between"> -->
+            <div class="left-side flex gap-2 items-center ">
+                <div class="img bg-purple-200 rounded-full p-2">
+                    <img src="./assets/Aperture.png" alt="">
                 </div>
-
-                <div class="right-side ">
-
+                <div class="counter-text ">
+                    <h2 class="text-[20px] font-bold"><span id="total-issues">0</span> <span>Issues</span></h2>
+                    <p>Track and manage your project issues</p>
                 </div>
             </div>
+
+
+
+            <div class="right-side flex gap-4 ">
+
+                <div>
+                    <span class="text-green-600"><i class="fa-solid fa-circle"></i> </span>
+                    <span>Open</span>
+                </div>
+                <div>
+                    <span class="text-purple-600"><i class="fa-solid fa-circle"></i> </span>
+                    <span>Closed</span>
+                </div>
+
+            </div>
+            <!-- </div> -->
+        </section>
+
+
+        <section id="issues-container" class=" bg-gray-100 p-4 shadow-sm  mt-5 rounded-sm grid grid-cols-4 gap-3">
+
+            <div class="card  bg-base-100 shadow-sm">
+                <div class="card-body">
+                    <div class="flex justify-between">
+                        <span class="badge badge-xs badge-warning">Most Popular</span>
+                        <span class="badge badge-xs badge-warning">Most Popular</span>
+                    </div>
+
+                    <h2 class="text-xl font-bold">Fix navigation menu on mobile devices</h2>
+                    <p class="line-clamp-2">The navigation menu doesn't collapse properly on mobile devices...</p>
+
+                    <div class="flex justify-between">
+                        <span class="badge badge-xs badge-warning">Most Popular</span>
+                        <span class="badge badge-xs badge-warning">Most Popular</span>
+                    </div>
+
+
+                    <div class=" border border-amber-50 shadow-sm py-2 ">
+                        <p>#1 by john_doe</p>
+                        <p>1/15/2024</p>
+
+                    </div>
+                </div>
+            </div>
+
         </section>
 
 
