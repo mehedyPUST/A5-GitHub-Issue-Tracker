@@ -53,15 +53,15 @@
     <main class=" w-11/12 mx-auto">
         <!-- button section  -->
         <section class=" bg-gray-100 p-4 shadow-sm flex gap-4 mt-5 rounded-sm">
-            <button class="btn btn-primary w-40">All</button>
-            <button class="btn btn-outline w-40">Open</button>
-            <button class="btn btn-outline w-40">Closed</button>
+            <button id="allIssuesBtn" class="btn btn-primary w-40">All</button>
+            <button id="openIssuesBtn" class="btn btn-outline w-40">Open</button>
+            <button id="closedIssuesBtn" class="btn btn-outline w-40">Closed</button>
         </section>
 
         <!-- ............................................. -->
 
         <section class=" bg-gray-100 p-4 shadow-sm flex justify-between items-center mt-5 rounded-sm">
-            <!-- <div class="counter flex justify-between"> -->
+
             <div class="left-side flex gap-2 items-center ">
                 <div class="img bg-purple-200 rounded-full p-2">
                     <img src="./assets/Aperture.png" alt="">
@@ -86,7 +86,7 @@
                 </div>
 
             </div>
-            <!-- </div> -->
+
         </section>
 
 
@@ -121,8 +121,9 @@
             </div> -->
 
         </section>
-
-
+        <section id="loading-spinner" class="hidden justify-center items-center col-span-4 py-20">
+            <span class="loading loading-spinner loading-lg text-primary"></span>
+        </section>
     </main>
 
 
