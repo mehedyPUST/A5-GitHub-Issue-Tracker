@@ -31,7 +31,7 @@
 
 <body>
     <!-- navbar...................................  -->
-    <nav class="navbar bg-base-100 flex justify-between shadow-sm w-39/40 mx-auto">
+    <nav class="navbar bg-base-100 flex-col md:flex-row gap-4 justify-between shadow-sm w-11/12 md:w-39/40 mx-auto">
         <div class="flex items-center gap-2 ">
             <img class="w-[36px]" src="./assets/github-logo.png" alt="">
             <a class=" text-xl font-bold ">Github Issues Tracker</a>
@@ -43,7 +43,7 @@
                 <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
             </div>
             <div>
-                <button class="btn btn-primary">+ New Issue</button>
+                <button class="btn btn-primary w-40">+ New Issue</button>
             </div>
 
         </div>
@@ -52,10 +52,10 @@
 
     <main class=" w-11/12 mx-auto">
         <!-- button section  -->
-        <section class=" bg-gray-100 p-4 shadow-sm flex gap-4 mt-5 rounded-sm">
-            <button id="allIssuesBtn" class="btn btn-primary w-40">All</button>
-            <button id="openIssuesBtn" class="btn btn-outline w-40">Open</button>
-            <button id="closedIssuesBtn" class="btn btn-outline w-40">Closed</button>
+        <section class=" bg-gray-100 p-4 shadow-sm grid grid-cols-2 md:grid-cols-3 gap-4 mb-4 mt-5 rounded-sm">
+            <button id="allIssuesBtn" class="btn btn-primary  col-span-2 md:col-span-1 cursor-pointer">All</button>
+            <button id="openIssuesBtn" class="btn btn-outline ">Open</button>
+            <button id="closedIssuesBtn" class="btn btn-outline ">Closed</button>
         </section>
 
         <!-- ............................................. -->
@@ -90,7 +90,8 @@
         </section>
 
 
-        <section id="issues-container" class=" bg-gray-100 p-4 shadow-sm  mt-5 rounded-sm grid grid-cols-4 gap-3">
+        <section id="issues-container"
+            class=" bg-gray-100 p-4 shadow-sm  mt-5 rounded-sm grid grid-cols-1 md:grid-cols-4 gap-3">
 
             <!-- <div class="card  bg-base-100 shadow-sm">
                 <div class="card-body">
