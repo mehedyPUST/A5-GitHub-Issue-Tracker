@@ -17,7 +17,7 @@ btnSignIn.addEventListener('click', function () {
 
     } else {
         // 3.2 false ::: alert > return
-        alert('Login Failed');
+        alert('Login Failed || Use Default Credentials');
         return;
     }
 
