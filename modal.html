@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Issue Tracker</title>
+
+
+    <!-- Tailwind and Daisy UI CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+</head>
+
+
+<body>
+    <section class="w-5/10 mx-auto mt-10 bg-white shadow-xl p-5 rounded-xl">
+        <h2 class="text-2xl font-bold mb-3">Fix broken image uploads</h2>
+        <div class="flex gap-3 mb-4 items-center ">
+            <span class="badge badge-success bg-green-500 text-white p-3 rounded-xl">Opened</span>
+            <span>Opened by Fahim Ahmed</span>
+            <span>22/02/2026</span>
+        </div>
+
+        <div class="flex gap-3">
+            <span class="badge badge-outline badge-error"><span><i class="fa-solid fa-bug"></i></span>BUG</span>
+            <span class="badge badge-outline badge-warning"><span><i class="fa-solid fa-life-ring"></i></span>HELP
+                WANTED</span>
+        </div>
+
+        <p class="mt-5">The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive
+            behavior.</p>
+
+        <div class="bg-gray-100 flex gap-50 mt-5 p-4">
+            <div class="space-y-2">
+                <p>Assignee:</p>
+                <p>Fahim Ahmed</p>
+
+            </div>
+            <div class="space-y-2">
+                <p>Priority:</p>
+                <span class="bg-red-300 py-1 px-4 rounded-xl text-red-600">High</span>
+            </div>
+        </div>
+
+
+        <div class="flex justify-end mt-5">
+            <button class="btn btn-primary">Close</button>
+        </div>
+
+    </section>
+
+
+
+</body>
+
+</html>
