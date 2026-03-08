@@ -8,6 +8,8 @@ const searchInput = document.getElementById('searchInput');
 
 
 let allIssues = [];
+// Add debounce timer variable
+let searchTimeout;
 
 function showLoading() {
     loadingSpinner.classList.remove('hidden');
@@ -21,18 +23,36 @@ function hideLoading() {
 };
 
 
-async function loadIssues() {
+async function loadIssues(url = "https://phi-lab-server.vercel.app/api/v1/lab/issues") {
     showLoading();
-    const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues"
-    const res = await fetch(url);
-    const data = await res.json();
-    hideLoading();
-    // console.log(data);
-    allIssues = data.data;
-    displayIssues(allIssues);
-    // console.log(data.data);
-    totalIssuesCounter.innerText = allIssues.length;
+    try {
+        let res = await fetch(url);
+        if (!res.ok) {
+            throw new Error('Failed to fetch issues');
+        }
+        let data = await res.json();
 
+        // Handle different API response structures
+        if (url.includes('/search')) {
+            // Search API might return data directly or in data property
+            allIssues = data.data || data;
+        } else {
+            allIssues = data.data;
+        }
+
+        displayIssues(allIssues);
+        totalIssuesCounter.innerText = allIssues.length;
+    } catch (error) {
+        console.error('Error loading issues:', error);
+        issuesContainer.innerHTML = `
+            <div class="col-span-4 text-center py-10 text-red-500">
+                <i class="fa-regular fa-circle-exclamation text-4xl mb-2"></i>
+                <p>Error loading issues. Please try again.</p>
+            </div>
+        `;
+    } finally {
+        hideLoading();
+    }
 }
 
 async function displayIssues(issues) {
@@ -48,17 +68,8 @@ async function displayIssues(issues) {
         totalIssuesCounter.innerText = 0;
         return;
     }
-    // console.log(issues);
-
-
-
-
-
-
 
     issues.forEach((issue) => {
-        // console.log(issue.labels[1]);
-
         const card = document.createElement('div');
 
         const borderClass = issue.status === 'open'
@@ -94,24 +105,24 @@ async function displayIssues(issues) {
 
                 <div class="flex gap-3">
                     <span class="py-1 rounded-xl text-[10px] 
-                          ${issue.labels[0] === 'enhancement'
+                          ${issue.labels && issue.labels[0] === 'enhancement'
                 ? 'bg-green-100 px-2 text-green-500 border border-green-500'
-                : issue.labels[0] === 'bug'
+                : issue.labels && issue.labels[0] === 'bug'
                     ? 'bg-red-100 px-4 text-red-500 border border-red-500'
-                    : issue.labels[0] === 'good first issue'
+                    : issue.labels && issue.labels[0] === 'good first issue'
                         ? 'bg-indigo-100 px-2 text-indigo-500 border border-indigo-500'
                         : 'bg-blue-100 px-2 text-blue-500 border border-blue-500'}">
-                        ${issue.labels[0] === 'enhancement'
+                        ${issue.labels && issue.labels[0] === 'enhancement'
                 ? '<i class="fa-solid fa-wand-magic-sparkles"></i> ENHANCEMENT'
-                : issue.labels[0] === 'bug'
+                : issue.labels && issue.labels[0] === 'bug'
                     ? '<i class="fa-solid fa-bug"></i> BUG'
-                    : issue.labels[0] === 'good first issue'
+                    : issue.labels && issue.labels[0] === 'good first issue'
                         ? '<i class="fa-regular fa-star"></i> GOOD FIRST ISSUE'
                         : '<i class="fa-regular fa-file-lines"></i> DOCUMENTATION'}
                     </span>
 
                     <span class="py-1 rounded-xl text-[10px] 
-                          ${!issue.labels[1]
+                          ${!issue.labels || !issue.labels[1]
                 ? ''
                 : issue.labels[1] === 'enhancement'
                     ? 'bg-green-100 px-2 text-green-500 border border-green-500'
@@ -122,7 +133,7 @@ async function displayIssues(issues) {
                             : issue.labels[1] === 'documentation'
                                 ? 'bg-blue-100 px-2 text-blue-500 border border-blue-500'
                                 : 'bg-yellow-100 px-2 text-yellow-500 border border-yellow-500'}">
-                        ${!issue.labels[1]
+                        ${!issue.labels || !issue.labels[1]
                 ? ''
                 : issue.labels[1] === 'enhancement'
                     ? '<i class="fa-solid fa-wand-magic-sparkles"></i> ENHANCEMENT'
@@ -137,8 +148,8 @@ async function displayIssues(issues) {
                 </div>
 
                 <div class="border border-amber-50 shadow-sm py-2">
-                    <p>By: ${issue.author.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</p>
-                    <p>${new Date(issue.createdAt).toLocaleString()}</p>
+                    <p>By: ${issue.author ? issue.author.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Unknown'}</p>
+                    <p>${issue.createdAt ? new Date(issue.createdAt).toLocaleString() : 'Date unknown'}</p>
                 </div>
             </div>
         `;
@@ -148,8 +159,6 @@ async function displayIssues(issues) {
 
     totalIssuesCounter.innerText = issues.length;
 };
-
-
 
 function filterAllIssues() {
     showLoading();
@@ -170,9 +179,8 @@ function filterOpenIssues() {
     allIssuesBtn.className = 'btn btn-outline col-span-2 md:col-span-1 ';
     openIssuesBtn.className = 'btn bg-green-500 text-white ';
     closedIssuesBtn.className = 'btn btn-outline ';
-
-
 }
+
 function filterClosedIssues() {
     showLoading();
     const closedIssues = allIssues.filter(issue => issue.status === 'closed');
@@ -181,34 +189,34 @@ function filterClosedIssues() {
 
     allIssuesBtn.className = 'btn btn-outline col-span-2 md:col-span-1 ';
     openIssuesBtn.className = 'btn btn-outline ';
-    closedIssuesBtn.className = 'btn  bg-purple-500 text-white ';
-
-
+    closedIssuesBtn.className = 'btn bg-purple-500 text-white ';
 }
 
 allIssuesBtn.addEventListener('click', filterAllIssues);
 openIssuesBtn.addEventListener('click', filterOpenIssues);
 closedIssuesBtn.addEventListener('click', filterClosedIssues);
 
+// Improved search with debouncing
 searchInput.addEventListener('keyup', function (event) {
-    const searchTerm = event.target.value;
+    // Clear previous timeout
+    clearTimeout(searchTimeout);
 
-    if (searchTerm === '') {
-        loadIssues();
-    } else {
-        const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchTerm}`;
+    const searchTerm = event.target.value.trim();
+    console.log('Search term:', searchTerm);
 
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                const searchResults = data.data || data;
-                displayIssues(searchResults);
-                totalIssuesCounter.innerText = searchResults.length;
-            });
-    }
+    // Debounce - wait for user to stop typing
+    searchTimeout = setTimeout(() => {
+        if (searchTerm === '') {
+            // If search is empty, load all issues
+            loadIssues();
+        } else {
+            // Build URL with encoded search term
+            const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${encodeURIComponent(searchTerm)}`;
+            console.log('Searching:', url);
+            loadIssues(url);
+        }
+    }, 300); // Wait 300ms after user stops typing
+});
 
-})
-
-
+// Initial load
 loadIssues();
-
