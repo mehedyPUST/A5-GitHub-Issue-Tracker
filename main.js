@@ -4,6 +4,8 @@ const allIssuesBtn = document.getElementById('allIssuesBtn');
 const openIssuesBtn = document.getElementById('openIssuesBtn');
 const closedIssuesBtn = document.getElementById('closedIssuesBtn');
 const loadingSpinner = document.getElementById('loading-spinner');
+const searchInput = document.getElementById('searchInput');
+
 
 let allIssues = [];
 
@@ -21,8 +23,8 @@ function hideLoading() {
 
 async function loadIssues() {
     showLoading();
-
-    const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+    let url = "https://phi-lab-server.vercel.app/api/v1/lab/issues"
+    let res = await fetch(url);
     const data = await res.json();
     hideLoading();
     // console.log(data);
@@ -188,3 +190,6 @@ closedIssuesBtn.addEventListener('click', filterClosedIssues);
 
 
 loadIssues();
+searchInput.addEventListener('keydown', function () {
+    url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchInput.value}`
+})
