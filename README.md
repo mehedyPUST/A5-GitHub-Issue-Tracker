@@ -129,7 +129,7 @@ const evenNumbers = numbers.filter(num => num % 2 === 0);
 console.log(evenNumbers); // [2, 4, 6]
 ```
 
-## 5. What is an arrow function?
+## 4. What is an arrow function?
 
 Arrow functions are a concise way to write function expressions in JavaScript. They have a shorter syntax and lexically bind the this value.
 
