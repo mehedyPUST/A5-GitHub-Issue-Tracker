@@ -1,129 +1,203 @@
-# 🌟 Welcome To (সহজ সরল সিম্পল) Assignment - 5
+## 1.  What is the difference between var, let, and const?
 
-# **📅 Deadline For 60 marks:** 9th March, 2026 (11:59 pm ⏱️)  
-#  📅 No Deadline For 50 marks  
-# **📅 Deadline For 30 marks:** Any time after 9th March.
+## var:
+Function-scoped or globally-scoped
 
----
+Can be redeclared and updated
 
-# Assignment-05: GitHub Issues Tracker
+Hoisted to the top of their scope
 
+Can be accessed before declaration (returns undefined)
 
-### **API Endpoints:**
-###  **All Issues:** 
-  - https://phi-lab-server.vercel.app/api/v1/lab/issues 
+```
+javascript
+var name = "John";
+var name = "Doe"; // Redeclaration allowed
+console.log(name); // "Doe"
+```
 
+## let:
 
-###  **Single Issue:**
-   - https://phi-lab-server.vercel.app/api/v1/lab/issue/{id}
+Block-scoped
 
-   - Example: https://phi-lab-server.vercel.app/api/v1/lab/issue/33
+Can be updated but not redeclared in the same scope
 
+Hoisted but not initialized (Temporal Dead Zone)
 
-###  **Search Issue:** https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q={searchText}
+```
+javascript
+let age = 25;
+age = 26; // Update allowed
+// let age = 30; // Error: Cannot redeclare
+```
 
-   - Example:  https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=notifications
+## const:
 
+Block-scoped
 
----
+Cannot be updated or redeclared
 
-## 📝 Main Requirements
+Must be initialized at declaration
 
-## 🎨 Design Part
+For objects/arrays, the reference cannot change but properties can
+```
+javascript
+const PI = 3.14;
+// PI = 3.15; // Error: Cannot reassign
 
-## Login Page
-- Create a login page containing a logo, title, and sub-title
-- Below that, there will be 2 inputs, a sign-in button, and a demo credential to sign in. Follow the Figma for this page 
-- Styled as per Figma
-
-## Main Page: 
-
-### Navbar: 
-
-- Navbar with website logo/name on the left
-- Search input and button on the right
-
-### Tab Section like Figma: 
-
-- 3 tab ( All, Open, Closed) at the top of this section.(**All**, **Open**, **Closed**)
-
-- Below the tab, there will be an icon, the issue count, some text on the left, and an open and closed marker on the right
-
-- Responsiveness: The website should be responsive for mobile devices. It is totally up to you. 
-
-
---- 
-
-
-## ⚙️ Functionalities
-- In login page, there will be default admin credentials (username, password). You need to sign in using these credentials.
-
-- Load all issues and display as per Figma
-
-- On clicking on an open or closed tab, it will load the issues data of the related tab and show it in a display-like card in a 4-column layout like Figma. By default, it will show all data 
-
-- Each card shows:
-  - Title
-  - Description
-  - Status
-  - Category
-  - Author
-  - Priority
-  - Label
-  - CreatedAt
-- Clicking on a tree name in a card will open a modal and show all the information about that Issue. 
-
-### 🚀 Challenges
-
-
-- Show the card Top border based on their category(open, closed), open card will have Green Boder, closed card will have a purple border on top. 
-
-- Loading spinner on data load
-
-- Show active button on changing category names
-
-- Implement Search Functionality and 8 meaningful github commit.  
-
-- Create a readme file and answer this question on your own. Don’t copy-paste from Google or any AI chatbot. 
-    - 1️⃣ What is the difference between var, let, and const?
-    - 2️⃣ What is the spread operator (...)?
-    - 3️⃣ What is the difference between map(), filter(), and forEach()?
-    - 4️⃣ What is an arrow function?
-    - 5️⃣ What are template literals?
-
-
----
-
-## 🛠️ Technology Stack
-
-- **HTML**
-- **CSS** (Vanilla/Tailwind/DaisyUI)
-- **JavaScript** (Vanilla)
-
----
-
-## 🔑 Demo Credentials
-
-```text
-Username: admin
-Password: admin123
+const person = { name: "John" };
+person.name = "Doe"; // This is allowed
+// person = {}; // Error: Cannot reassign
 ```
 
 
----
+## 2. What is the spread operator (...)?
 
-### Optional: 
- - No need to show status: Open, Closed styles On modals. 
- - No Need to show icon on labels 
- - No need to apply styles on Priority 
---- 
+The spread operator allows an iterable to expand in places where multiple elements/variables are expected. It's used to copy, combine, or expand arrays and objects.
+
+Examples:
+```
+javascript
+// Arrays
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const combined = [...arr1, ...arr2]; // [1, 2, 3, 4, 5, 6]
+const copyArr = [...arr1]; // Copy array
+
+// Objects
+const obj1 = { a: 1, b: 2 };
+const obj2 = { c: 3, d: 4 };
+const mergedObj = { ...obj1, ...obj2 }; // { a: 1, b: 2, c: 3, d: 4 }
+
+// Function arguments
+const numbers = [1, 2, 3, 4, 5];
+console.log(Math.max(...numbers)); // 5
+```
+
+## 3. What is the difference between map(), filter(), and forEach()?
+
+## forEach():
+
+Executes a function for each array element
+
+Returns undefined
+
+Does not create a new array
+
+Used for side effects
+```
+javascript
+const numbers = [1, 2, 3, 4];
+numbers.forEach(num => console.log(num * 2));
+// Output: 2, 4, 6, 8
+// Returns: undefined
+```
 
 
-## 📤 What to submit
+## map():
 
-- **GitHub Repository Link:**
-- **Live Site Link:**
+Creates a new array with results of calling a function on every element
 
----
+Returns a new array of the same length
 
+Used for transforming data
+```
+javascript
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // [2, 4, 6, 8]
 
+```
+
+## filter():
+
+Creates a new array with elements that pass a test
+
+Returns a new array (may be shorter)
+
+Used for filtering data based on conditions
+```
+javascript
+const numbers = [1, 2, 3, 4, 5, 6];
+const evenNumbers = numbers.filter(num => num % 2 === 0);
+console.log(evenNumbers); // [2, 4, 6]
+```
+
+## 5. What is an arrow function?
+
+Arrow functions are a concise way to write function expressions in JavaScript. They have a shorter syntax and lexically bind the this value.
+
+Syntax:
+```
+javascript
+// Traditional function
+function add(a, b) {
+    return a + b;
+}
+
+// Arrow function
+const add = (a, b) => a + b;
+
+// With single parameter (parentheses optional)
+const square = x => x * x;
+
+// With no parameters
+const greet = () => "Hello World";
+
+// With multiple statements
+const process = (a, b) => {
+    const result = a + b;
+    return result * 2;
+};
+```
+Key Features:
+
+No this binding (inherits from parent scope)
+
+Cannot be used as constructors
+
+No arguments object
+
+Cannot be used as methods if you need to access this
+
+## 5. What are template literals?
+
+Template literals are string literals allowing embedded expressions, multi-line strings, and string interpolation using backticks (` `) and ${} syntax.
+
+Examples:
+```
+javascript
+// Basic usage
+const name = "John";
+const greeting = `Hello, ${name}!`; // "Hello, John!"
+
+// Multi-line strings
+const multiLine = `
+    This is a
+    multi-line
+    string
+`;
+
+// Expressions
+const a = 10;
+const b = 20;
+const result = `The sum of ${a} and ${b} is ${a + b}`; 
+// "The sum of 10 and 20 is 30"
+
+// Function calls
+const price = 50;
+const tax = 0.1;
+const message = `Total: $${(price * (1 + tax)).toFixed(2)}`;
+// "Total: $55.00"
+
+```
+
+Benefits:
+
+Cleaner string concatenation
+
+Easy multi-line strings
+
+Can embed any JavaScript expression
+
+More readable and maintainable code
