@@ -152,9 +152,9 @@ function openIssueModal(issue) {
     modalContent.innerHTML = `
         <section class="w-[95vw] md:w-[60vw] mx-auto ${borderClass} bg-white shadow-xl p-5 md:p-10 rounded-xl">
         
-            <div class="flex justify-between items-center mb-3">
+            <div class=" mb-3">
                 <h2 class="text-2xl font-bold ">${issue.title}</h2>
-                <label for="issue-modal" class="text-2xl text-red-500 bg-red-100 px-2 rounded-sm cursor-pointer">x</label>
+                
             </div>
 
             <div class="flex gap-3 mb-4 items-center ">
@@ -233,8 +233,11 @@ function openIssueModal(issue) {
                 </div>
             </div>
 
-            <div class="flex justify-end mt-5">
-                <button onclick="closeModal()" class="btn btn-primary">Close</button>
+            <div class="flex justify-between mt-5">
+           
+              <span class="btn">ID: ${issue.id}</span>
+
+              <button onclick="closeModal()" class="btn btn-primary">Close</button>
             </div>
 
         </section>
