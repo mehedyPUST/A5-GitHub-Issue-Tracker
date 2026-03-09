@@ -9,8 +9,9 @@ Hoisted to the top of their scope
 
 Can be accessed before declaration (returns undefined)
 
-```
+
 javascript
+```
 var name = "John";
 var name = "Doe"; // Redeclaration allowed
 console.log(name); // "Doe"
@@ -24,8 +25,8 @@ Can be updated but not redeclared in the same scope
 
 Hoisted but not initialized (Temporal Dead Zone)
 
-```
 javascript
+```
 let age = 25;
 age = 26; // Update allowed
 // let age = 30; // Error: Cannot redeclare
@@ -40,8 +41,9 @@ Cannot be updated or redeclared
 Must be initialized at declaration
 
 For objects/arrays, the reference cannot change but properties can
-```
+
 javascript
+```
 const PI = 3.14;
 // PI = 3.15; // Error: Cannot reassign
 
@@ -56,8 +58,9 @@ person.name = "Doe"; // This is allowed
 The spread operator allows an iterable to expand in places where multiple elements/variables are expected. It's used to copy, combine, or expand arrays and objects.
 
 Examples:
-```
+
 javascript
+```
 // Arrays
 const arr1 = [1, 2, 3];
 const arr2 = [4, 5, 6];
@@ -85,8 +88,9 @@ Returns undefined
 Does not create a new array
 
 Used for side effects
-```
+
 javascript
+```
 const numbers = [1, 2, 3, 4];
 numbers.forEach(num => console.log(num * 2));
 // Output: 2, 4, 6, 8
@@ -101,8 +105,9 @@ Creates a new array with results of calling a function on every element
 Returns a new array of the same length
 
 Used for transforming data
-```
+
 javascript
+```
 const numbers = [1, 2, 3, 4];
 const doubled = numbers.map(num => num * 2);
 console.log(doubled); // [2, 4, 6, 8]
@@ -116,8 +121,9 @@ Creates a new array with elements that pass a test
 Returns a new array (may be shorter)
 
 Used for filtering data based on conditions
-```
+
 javascript
+```
 const numbers = [1, 2, 3, 4, 5, 6];
 const evenNumbers = numbers.filter(num => num % 2 === 0);
 console.log(evenNumbers); // [2, 4, 6]
@@ -128,8 +134,9 @@ console.log(evenNumbers); // [2, 4, 6]
 Arrow functions are a concise way to write function expressions in JavaScript. They have a shorter syntax and lexically bind the this value.
 
 Syntax:
-```
+
 javascript
+```
 // Traditional function
 function add(a, b) {
     return a + b;
@@ -165,8 +172,9 @@ Cannot be used as methods if you need to access this
 Template literals are string literals allowing embedded expressions, multi-line strings, and string interpolation using backticks (` `) and ${} syntax.
 
 Examples:
-```
+
 javascript
+```
 // Basic usage
 const name = "John";
 const greeting = `Hello, ${name}!`; // "Hello, John!"
